@@ -1,10 +1,55 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
  import svg2 from '../../../asserts/Sign up-rafiki.png'
+import { AuthContext } from '../../../Contexts/UserContext/UserContext';
 const SignUp = () => {
+    const [error,setError] = useState('');
+  const {createUser, profileUpdate} = useContext(AuthContext);
+  // console.log(verifyEmail);
+const handleForm = (e) => {
+ e.preventDefault();
+ const form = e.target;
+ const name = form.name.value;
+ const email = form.email.value;
+ const password = form.password.value;
+ const photoURL = form.photoURL.value;
+//  console.log(email, password, name);/
+ 
+ createUser(email, password).then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    console.log(user);
+    toast.success('Register SuccessFully',{autoClose : 200});
+  
+    setError('');
+    handleProfileUpdate(name, photoURL)
+    form.reset();
+    
+
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setError(errorMessage)
+
+    // ..
+  });
+
+}
+
+const handleProfileUpdate = (name , photoURL) => {
+  const profile = {
+    displayName: name, 
+    photoURL:  photoURL,
+  }
+  profileUpdate(profile);
+}
+
   return (
     <div>
-      <div className="hero min-h-screen 
+      <div className="hero pt-24 min-h-screen 
        bg-base-200">
   <div className="hero-content flex-col lg:flex-row-reverse mx-20">
     <div className="text-center lg:text-left">
@@ -12,24 +57,43 @@ const SignUp = () => {
     </div>
     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
       <div className="card-body">
+        <form onSubmit={handleForm}>
+                  <div className="form-control">
+          <label className="label">
+            <span className="label-text">Name</span>
+          </label>
+          <input type="text" placeholder="name" className="input input-bordered" />
+        </div>
+
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
           </label>
-          <input type="text" placeholder="email" className="input input-bordered" />
+          <input type="email" name='email' placeholder="email" className="input input-bordered" />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">PhotoURL</span>
+          </label>
+          <input type="text" name='photoURL' placeholder="PhotoURL" className="input input-bordered" />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input type="text" placeholder="password" className="input input-bordered" />
-          <label className="label">
-            <Link href="#" className="label-text-alt link link-hover">Forgot password?</Link>
-          </label>
+          <input type="password" name='password' placeholder="password" className="input input-bordered" />
         </div>
+         
+          <div className="flex justify-between">
+             
+            <div to="#" className=" link link-hover"><small>Alreday you have Account?</small> <Link to="/login">Login</Link> </div>
+                    
+        </div>
+
         <div className="form-control mt-6">
           <button className="btn btn-primary text-white">Register</button>
         </div>
+        </form>
         {/*  */}
         <div className="flex items-center pt-4 space-x-1">
 		<div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>

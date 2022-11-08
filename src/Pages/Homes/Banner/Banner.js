@@ -22,9 +22,7 @@ const Banner = () => {
         prev: 2,
         id: 3,
         next: 1,
-              title : `Memory That Will \n
-         
-         Last A LifeTime`
+              title : `Love the life you live`
     },
   
 ]
