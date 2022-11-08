@@ -9,7 +9,7 @@ const BannerItem = ({slide}) => {
                     <img src={image} alt="" className="w-[100%]     " />
                 </div>
                 <div className="absolute flex justify-end transform -translate-y-1/2 left-24 top-1/2">
-                    <h1 className='text-6xl font-bold font-serif text-gray-100'>
+                    <h1 className='text-6xl font-bold font-serif uppercase text-gray-100'>
                     {title}
                     </h1>
                 </div>
