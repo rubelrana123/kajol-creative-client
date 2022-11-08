@@ -1,0 +1,25 @@
+[
+  {
+    "id" : 1,
+    "question" : "Difference Between SQL and NOSQL ? ",
+    "anwser" : "SQL is the programming language used to interface with relational databases. (Relational databases model data as records in rows and tables with logical links between them). NoSQL is a class of DBMs that are non-relational and generally do not use SQL."
+    
+  },
+  {
+    "id": 2,
+    "question" : "Difference between javascript and Node JS ? ",
+    "anwser": "Javascript is a Scripting language. It is mostly abbreviated as JS. It can be said that Javascript is the updated version of the ECMA script. Javascript is a high-level programming language that uses the concept of Oops but it is based on prototype inheritance. NodeJS is a cross-platform and opensource Javascript runtime environment that allows the javascript to be run on the server-side. Nodejs allows Javascript code to run outside the browser. Nodejs comes with a lot of modules and mostly used in web development. "
+  },
+  {
+    "id": 3,
+    "question": "What is JWT ?",
+    "anwser": "JSON Web Token is a proposed Internet standard for creating data with optional signature and/or optional encryption whose payload holds JSON that asserts some number of claims. The tokens are signed either using a private secret or a public/private key."
+
+  },
+  {
+    "id": 4,
+    "question": "How does Nodejs handle multiple request at the same time?",
+    "anwser": "NodeJS receives multiple client requests and places them into EventQueue. NodeJS is built with the concept of event-driven architecture. NodeJS has its own EventLoop which is an infinite loop that receives requests and processes them. EventLoop is the listener for the EventQueue.If NodeJS can process the request without I/O blocking then the event loop would itself process the request and sends the response back to the client by itself. But, it is possible to process multiple requests parallelly using the NodeJS cluster module or worker_threads module."
+ 
+  }
+]
