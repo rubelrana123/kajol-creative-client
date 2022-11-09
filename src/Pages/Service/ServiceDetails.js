@@ -1,14 +1,72 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserContext/UserContext';
 import UseTitle from '../../Title/UseTitle';
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaUser } from "react-icons/fa";
+import PublicReview from '../Reviews/PublicReview';
+import toast from 'react-hot-toast';
 const ServiceDetails = () => {
-  UseTitle("Service")
+  const [reviews, setReviews] = useState([{}]);
   const serviceDetails = useLoaderData();
-  const {description, rating, imgage, price, title} = serviceDetails;
-  console.log(serviceDetails);
   const {user} = useContext(AuthContext);
+  UseTitle("Service")
+  const {description, rating, imgage, price,_id, title} = serviceDetails;
+  console.log(serviceDetails);
+  const currentDate =  new Date().toLocaleString();
+
+console.log(reviews);
+
+    fetch(`http://localhost:5000/reviews/${_id}`).then(res => res.json()).then(data => console.log(data));
+
+
+
+  //  console.log(currentDate);
+
+   const handleForm = (e) => {
+    e.preventDefault();
+    const form =  e.target;
+    const rating = form.rating.value;
+    const review = form.review.value;
+
+    // console.log(rating, review);
+
+    const reviewObj = {
+      serviceId :  _id,
+      image : imgage,
+      review,
+      rating,
+       name :  user?.displayName,
+       userPhoto : user?.photoURL || <FaUser></FaUser>,
+       date : currentDate,
+       email : user?.email
+
+    }
+    // console.log(reviewObj);
+
+
+      fetch(`http://localhost:5000/reviews`, {
+     method: 'POST',  
+    headers: {
+    'Content-Type': 'application/json',
+   },
+  body: JSON.stringify(reviewObj),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    if(data.insertedId) {
+      
+      toast.success("Add Review Successfully", {autoClose : 200})
+      form.reset();
+
+    }
+    console.log('Success:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+
+   }
+
   return (
    <div className='pt-36 '>
      <div className='justify-center flex'>
@@ -27,45 +85,61 @@ const ServiceDetails = () => {
 </div>
      </div>
 
-     <div>
+  <div className='flex justify-evenly'>
+       <div className='w-1/3'>
 
 
-       <form onSubmit={""} className= " border-2 border-emerald-500 p-3 rounded-xl mt-6 px-18" >
+       <form onSubmit={handleForm} className= " border-2 border-emerald-500 p-3 rounded-xl mt-6 px-18" >
         <div>
-          <h1 className='text-4xl text-center border-y-4 border-emerald-200 '>Service Review</h1>
+          <h1 className='text-md  '>Rate and review purchased Service</h1>
         </div>
            <div className='flex gap-6 '>
-                 <div className="form-control">
+            {/* { !user?.displayName &&
+                        <div className="form-control">
           <label className="label">
             <span className="label-text">Name</span>
           </label>
-          <input type="text" defaultValue={user?.displayName && user?.displayName } placeholder="name" className="input rounded-md  input-bordered" />
+          <input type="text"  placeholder="name" className="input rounded-md  input-bordered" />
         </div>
+            
+            } */}
 
-        <div className="form-control">
+            {/* {
+              !user?.email && 
+                      <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
           </label>
-          <input type="email" name='email' defaultValue={user?.email} placeholder="email" className="input rounded-md input-bordered" />
+          <input type="email" name='email' placeholder="email" className="input rounded-md input-bordered" />
         </div>
+            } */}
+ 
+
+
            </div>
-        <div className="form-control">
+           {/* {
+            !user?.photoURL &&
+                    <div className="form-control">
           <label className="label">
             <span className="label-text">PhotoURL</span>
           </label>
-          <input type="text" name='photoURL' defaultValue={user?.photoURL && user?.photoURL} placeholder="PhotoURL" className="input input-bordered rounded-md" />
+          <input type="text" name='photoURL'   placeholder="PhotoURL" className="input input-bordered rounded-md" />
         </div>
+
+
+           } */}
+
         <div className="form-control">
           <label className="label">
             <span className="label-text">Rating(5/5)</span>
           </label>
-          <input type="number" name='rating' placeholder="Rating" className="input input-bordered rounded-md" />
+          <input type="text" name='rating' placeholder="Rating" className="input input-bordered rounded-md" />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Review</span>
           </label>
-         <textarea className="textarea textarea-info rounded-md"  name='review' placeholder="Bio"></textarea>
+         <textarea className="textarea textarea-info rounded-md"  name='review' placeholder="Please ahare our feedback about this service ?  was the service as describe"></textarea>
         </div>
  
 
@@ -74,6 +148,16 @@ const ServiceDetails = () => {
         </div>
         </form>
      </div>
+     <div className='w-2/4 pt-4'>
+            <div className=''>
+        <p className='text-xl'>Service Review : </p>
+      </div>
+        {
+          // reviews?.map(review => <PublicReview key={review._id} reviewss={review} ></PublicReview> )
+        }
+     </div>
+
+  </div>
    </div>
 
  

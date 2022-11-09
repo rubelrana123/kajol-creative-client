@@ -131,6 +131,8 @@ const Pakage = () => {
 		</div>
 	</div>
 </section>
+        <div className="border-b-2  border-gray-700"></div> 
+
     </div>
   );
 };

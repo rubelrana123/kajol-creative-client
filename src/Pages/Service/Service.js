@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import UseTitle from '../../Title/UseTitle';
+ 
 import ServiceItem from './ServiceItem';
 
 const Service = () => {
@@ -14,7 +14,7 @@ const Service = () => {
     } )
     }, [])
   return (
-    <div className='bg-[#2d2f32] text-white'>
+    <div className='bg-gray-800 text-white'>
       <div className='flex justify-center align-middle flex-col'>
          <h1 className='text-center text-5xl py-5  font-semibold'>Services</h1>
          <p className='w-7/12 mx-auto text-center text-lg text-gray-300 '>Our  photography services team made up of professional photographers can add value to your website with high-resolution team photos, corporate event photography and product photography.</p>
@@ -29,6 +29,7 @@ const Service = () => {
           <button className="btn glass w-40 btn-outline text-white border-green-300 border-2 shadow-md  text-2xl">See All</button></Link>
 
         </div>
+        <div className="border-b-2 border-gray-700"></div> 
     </div>
   );
 };

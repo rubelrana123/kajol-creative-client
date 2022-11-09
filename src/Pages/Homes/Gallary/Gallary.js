@@ -28,8 +28,8 @@ const Gallary = () => {
   
 ]
   return (
-    <div className='bg-slate-600'>
-      		<div className="max-w-2xl mx-auto mb-16  py-5 text-center">
+    <div className='bg-gray-800 py-5'>
+      		<div className="max-w-2xl mx-auto mb-16 text-center">
 			<h2 className="text-4xl font-bold text-white lg:text-5xl">Gallary</h2>
 			 
 		</div>
@@ -40,6 +40,7 @@ const Gallary = () => {
             return (
                         <div class="w-full rounded">
         <img src= {photo.image}
+           class="inset-0 h-full w-full object-cover object-center rounded opacity-75 hover:opacity-100" 
             alt="gallary"/>
          </div>
 
