@@ -9,7 +9,7 @@ const ServiceDetails = () => {
   const {user} = useContext(AuthContext);
   return (
     <div>
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero min-h-screen pt-24 bg-base-200">
   <div className="hero-content flex-col justify-around lg:flex-row-reverse">
      {/* review */}
      <form onSubmit={""} className= " border-2 border-emerald-500 p-3 rounded-xl mt-8" >
@@ -56,13 +56,19 @@ const ServiceDetails = () => {
         </div>
         </form>
     {/* End review */}
-<div className="card  flex flex-col justify-between bg-base-100 shadow-xl">
-    <div className=' w-96 border-2 border-gray-700'>
+<div className="card  flex flex-col  justify-between bg-base-100 shadow-xl">
+    <div className=' w-full border-2 border-gray-700'>
        <img src= {imgage} className="" alt="Album"/>
     </div>
-  <div className="card-body">
-    <h2 className="card-title">{title}</h2>
+  <div className="card-body pt-0">
+    <div className='flex justify-between'>
+      <p>Package : {price}</p>
+      <p>Rating : {rating}</p>
+    </div>
+   <div>
+        <h2 className="card-title">{title}</h2>
     <p>{description}</p>
+   </div>
  
   </div>
 </div>
