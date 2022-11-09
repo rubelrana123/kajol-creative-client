@@ -3,7 +3,9 @@ import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
  import svg2 from '../../../asserts/Sign up-rafiki.png'
 import { AuthContext } from '../../../Contexts/UserContext/UserContext';
+import UseTitle from '../../../Title/UseTitle';
 const SignUp = () => {
+  UseTitle("Signup")
     const [error,setError] = useState('');
   const {createUser, profileUpdate} = useContext(AuthContext);
   // console.log(verifyEmail);

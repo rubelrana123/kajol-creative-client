@@ -1,7 +1,8 @@
  
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserContext/UserContext';
+import UseTitle from '../../Title/UseTitle';
  
 import BlogQuestion from './BlogQuestion';
  
@@ -10,6 +11,7 @@ import BlogQuestion from './BlogQuestion';
 
 const Blog = () => {
   // const data = useLoaderData();
+  UseTitle("Blog")
   const [data, setData] = useState([]);
 
   fetch("data.json").then(res => res.json()).then(data => setData(data) )

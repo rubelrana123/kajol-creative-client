@@ -3,9 +3,11 @@ import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
  import svg1 from '../../../asserts/Privacy policy-rafiki.png'
 import { AuthContext } from '../../../Contexts/UserContext/UserContext';
+import UseTitle from '../../../Title/UseTitle';
 const Login = () => {
     const [error, setError] = useState("");
 	// const [userEmail, setUserEmail] = useState('');
+  UseTitle("Login")
 	const location = useLocation();
 	const navigate = useNavigate();
 	// const from = location?.state?.from.pathname || "/"

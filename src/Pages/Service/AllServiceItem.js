@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import UseTitle from '../../Title/UseTitle';
 
 const AllServiceItem = ({service}) => {
+  UseTitle("Services")
   console.log(service);
   const {imgage, description,price, _id, title
 } = service;

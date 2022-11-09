@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import UseTitle from '../../Title/UseTitle';
 import ServiceItem from './ServiceItem';
 
 const Service = () => {
+  
   const [services, setServices] = useState([]);
     useEffect(()=> {
     const uri = `http://localhost:5000/services?size=3`;
