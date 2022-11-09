@@ -10,8 +10,8 @@ const Login = () => {
   UseTitle("Login")
 	const location = useLocation();
 	const navigate = useNavigate();
-	// const from = location?.state?.from.pathname || "/"
-  const {user, signin, googleSignin, forgetPassword} = useContext(AuthContext);
+	const from = location?.state?.from.pathname || "/"
+  const {user, signin, googleSignin,} = useContext(AuthContext);
   // console.log(user);
 
 const handleForm = (e) => {
@@ -21,11 +21,7 @@ const handleForm = (e) => {
  const email = form.email.value;
  const password = form.password.value;
 
- const test = /\S+@\S+\.\S+/.test(email);
- if (!test) {
-	 setError('please provide a valid email');
-	 return;
- } 
+
   if (password.length < 6) {
             setError('Password should be 6 characters or more.');
             return;
@@ -36,7 +32,7 @@ const handleForm = (e) => {
  signin(email, password).then((userCredential) => {
     const user = userCredential.user;
     console.log(user);
-		// navigate(from, {replace : true})
+		navigate(from, {replace : true})
     navigate("/")
 		toast.success("Login Successfully..")
 		form.reset();
@@ -102,7 +98,7 @@ const handleForm = (e) => {
             <div to="#" className=" link link-hover"><small>If you hav'nt Account?</small> <Link to="/signup">SignUp</Link> </div>
                     
         </div>
-        <div>
+        <div className='text-red-400'>
           {error}
         </div>
         <div className="form-control mt-6">
