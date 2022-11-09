@@ -6,11 +6,10 @@ const AddService = () => {
   const [services, setServices] = useState();
 
   useEffect(()=> {
-    fetch(`http://localhost:5000/services`).then(res => res.json()).then(data => console.log(data));
+    fetch(`http://localhost:5000/services`).then(res => res.json()).then(data => setServices(data));
 
-
-  })
-
+   })
+console.log("service", services);
   const handleForm = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -40,6 +39,7 @@ const AddService = () => {
   .then((response) => response.json())
   .then((data) => {
     if(data.insertedId) {
+      
       toast.success("Add New Product Successfully", {autoClose : 200})
       form.reset();
 

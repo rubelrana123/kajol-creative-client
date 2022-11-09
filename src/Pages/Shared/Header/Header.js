@@ -36,7 +36,7 @@ const Header = () => {
         </li>
         <li tabIndex={0}>
           <Link to="/myReview">
-            Add Review
+            My  Review
       
           </Link>
        
@@ -57,7 +57,7 @@ const Header = () => {
       {
         user?.uid && user?.email  ?
          <>
-       <li tabIndex={0}> <Link to="/myReview"> Add Review  </Link> </li>
+       <li tabIndex={0}> <Link to="/myReview"> My Review  </Link> </li>
        <li><Link to="/addService">Add Service</Link></li>
       <li className='mt-3 cursor-pointer' onClick={handleSignout}>Logout</li>
 
