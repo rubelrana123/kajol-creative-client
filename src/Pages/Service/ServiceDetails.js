@@ -1,50 +1,71 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/UserContext/UserContext';
 
 const ServiceDetails = () => {
+  const serviceDetails = useLoaderData();
+  const {description, rating, imgage, price, title} = serviceDetails;
+  console.log(serviceDetails);
+  const {user} = useContext(AuthContext);
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
-  <div className="hero-content flex-col justify-between lg:flex-row-reverse">
+  <div className="hero-content flex-col justify-around lg:flex-row-reverse">
      {/* review */}
-    <div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-      <div className="card-body">
+     <form onSubmit={""} className= " border-2 border-emerald-500 p-3 rounded-xl mt-8" >
+        <div>
+          <h1 className='text-4xl text-center border-y-4 border-emerald-200 '>Service Review</h1>
+        </div>
+           <div className='flex gap-6 '>
+                 <div className="form-control">
+          <label className="label">
+            <span className="label-text">Name</span>
+          </label>
+          <input type="text" defaultValue={user?.displayName && user?.displayName } placeholder="name" className="input rounded-md  input-bordered" />
+        </div>
+
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
           </label>
-          <input type="text" placeholder="email" className="input input-bordered" />
+          <input type="email" name='email' defaultValue={user?.email} placeholder="email" className="input rounded-md input-bordered" />
+        </div>
+           </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">PhotoURL</span>
+          </label>
+          <input type="text" name='photoURL' defaultValue={user?.photoURL && user?.photoURL} placeholder="PhotoURL" className="input input-bordered rounded-md" />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Password</span>
+            <span className="label-text">Rating(5/5)</span>
           </label>
-          <input type="text" placeholder="password" className="input input-bordered" />
+          <input type="number" name='rating' placeholder="Rating" className="input input-bordered rounded-md" />
+        </div>
+        <div className="form-control">
           <label className="label">
-            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+            <span className="label-text">Review</span>
           </label>
+         <textarea className="textarea textarea-info rounded-md"  name='review' placeholder="Bio"></textarea>
         </div>
+ 
+
         <div className="form-control mt-6">
-          <button className="btn btn-primary">Login</button>
+          <button className="btn btn-primary text-white">Submit</button>
         </div>
-      </div>
-    </div>
-    </div>
+        </form>
     {/* End review */}
-      <div className="card w-full bg-base-100 shadow-xl">
-      <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
-      <div className="card-body">
-        <h2 className="card-title">
-          Shoes!
-          <div className="badge badge-secondary">NEW</div>
-        </h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
-        <div className="card-actions justify-end">
-          <div className="badge badge-outline">Fashion</div> 
-          <div className="badge badge-outline">Products</div>
-        </div>
-      </div>
-      </div>
+<div className="card  flex flex-col justify-between bg-base-100 shadow-xl">
+    <div className=' w-96 border-2 border-gray-700'>
+       <img src= {imgage} className="" alt="Album"/>
+    </div>
+  <div className="card-body">
+    <h2 className="card-title">{title}</h2>
+    <p>{description}</p>
+ 
+  </div>
+</div>
   </div>
 </div>
     </div>
