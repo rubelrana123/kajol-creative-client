@@ -1,9 +1,56 @@
 import React from 'react';
 
 const Gallary = () => {
+    const GallaryPhoto = [
+    {
+        image: "https://raw.githubusercontent.com/rubelrana123/phographer/main/asserts/wedding3.jpg",
+ 
+    },
+    {
+        image: "https://raw.githubusercontent.com/rubelrana123/phographer/main/asserts/weeding255520_960_720.jpg",
+ 
+    },
+    {
+        image: "https://raw.githubusercontent.com/rubelrana123/phographer/main/asserts/couple.jpg",
+ 
+    },
+    {
+        image: "https://raw.githubusercontent.com/rubelrana123/phographer/main/asserts/couple.jpg",
+ 
+    },
+    {
+        image :  "https://raw.githubusercontent.com/rubelrana123/phographer/main/meatloaf-3747129_960_720.jpg",
+    },
+    {
+        image :  "https://raw.githubusercontent.com/rubelrana123/phographer/main/birthday.jpg",
+    },
+  
+  
+]
   return (
-    <div>
-      <h1>Gallary Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium sapiente perspiciatis suscipit pariatur nisi aliquid doloremque eos consequatur, omnis quae eligendi id voluptas quam nobis commodi tenetur iure ducimus. Repellendus laudantium qui enim voluptates, a quibusdam facilis culpa nemo, nam minima, atque odio doloribus at ullam dolorum unde saepe pariatur ut sit veritatis magni molestiae? Vel ducimus repellendus deserunt adipisci labore, nesciunt perferendis accusamus sed. Praesentium, magni porro sequi quia veritatis omnis iusto ad, amet voluptates qui expedita ab repudiandae aliquam at est vel explicabo odit velit. Dolor nesciunt ratione eveniet dolorum obcaecati aspernatur? Enim odit omnis perferendis possimus quaerat?</h1>
+    <div className='bg-slate-600'>
+      		<div className="max-w-2xl mx-auto mb-16  py-5 text-center">
+			<h2 className="text-4xl font-bold text-white lg:text-5xl">Gallary</h2>
+			 
+		</div>
+       <div class="container grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-2 mx-auto">
+
+        {
+          GallaryPhoto.map(photo => {
+            return (
+                        <div class="w-full rounded">
+        <img src= {photo.image}
+            alt="gallary"/>
+         </div>
+
+            )
+
+
+          })
+        }
+
+
+</div>
     </div>
   );
 };

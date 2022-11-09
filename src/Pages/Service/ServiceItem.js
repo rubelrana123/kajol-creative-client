@@ -15,7 +15,7 @@ const ServiceItem = ({service}) => {
       <div className="foo">
        
           <PhotoView src={imgage}  >
-            <img src={imgage} alt="" />
+            <img className='rounded-xl' src={imgage} alt="" />
           </PhotoView>
         
       </div>
