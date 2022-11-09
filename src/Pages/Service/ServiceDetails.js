@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserContext/UserContext';
 import UseTitle from '../../Title/UseTitle';
-
+import { FaStar } from "react-icons/fa";
 const ServiceDetails = () => {
   UseTitle("Service")
   const serviceDetails = useLoaderData();
@@ -10,11 +10,27 @@ const ServiceDetails = () => {
   console.log(serviceDetails);
   const {user} = useContext(AuthContext);
   return (
-    <div>
-      <div className="hero min-h-screen pt-24 bg-base-200">
-  <div className="hero-content flex-col justify-around lg:flex-row-reverse">
-     {/* review */}
-     <form onSubmit={""} className= " border-2 border-emerald-500 p-3 rounded-xl mt-8" >
+   <div className='pt-36 '>
+     <div className='justify-center flex'>
+ 
+            <div className="card object-fill w-3/5 bg-base-100 shadow-xl">
+  <figure><img src={imgage} alt="Shoes" /></figure>
+  <div className="card-body pt-2">
+    <div className='flex  justify-between'>
+      <p> Package : {price}</p>
+      <p className='text-yellow-200 flex'> <FaStar className='mt-1 mr-2'></FaStar>  {rating}</p>
+    </div>
+    <h2 className="card-title">{title}</h2>
+    <p>{description}</p>
+ 
+  </div>
+</div>
+     </div>
+
+     <div>
+
+
+       <form onSubmit={""} className= " border-2 border-emerald-500 p-3 rounded-xl mt-6 px-18" >
         <div>
           <h1 className='text-4xl text-center border-y-4 border-emerald-200 '>Service Review</h1>
         </div>
@@ -57,27 +73,18 @@ const ServiceDetails = () => {
           <button className="btn btn-primary text-white">Submit</button>
         </div>
         </form>
-    {/* End review */}
-<div className="card  flex flex-col  justify-between bg-base-100 shadow-xl">
-    <div className=' w-full border-2 border-gray-700'>
-       <img src= {imgage} className="" alt="Album"/>
-    </div>
-  <div className="card-body pt-0">
-    <div className='flex justify-between'>
-      <p>Package : {price}</p>
-      <p>Rating : {rating}</p>
-    </div>
-   <div>
-        <h2 className="card-title">{title}</h2>
-    <p>{description}</p>
+     </div>
    </div>
+
  
-  </div>
-</div>
-  </div>
-</div>
-    </div>
+ 
+    
   );
 };
 
 export default ServiceDetails;
+
+
+/* 
+    
+*/
