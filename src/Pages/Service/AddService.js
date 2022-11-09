@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const AddService = () => {
+
+  const [services, setServices] = useState();
+
+  useEffect(()=> {
+    fetch(`http://localhost:5000/services`).then(res => res.json()).then(data => console.log(data));
+
+
+  })
+
   const handleForm = (e) => {
     e.preventDefault();
     const form = e.target;

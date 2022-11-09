@@ -24,7 +24,7 @@ const Service = () => {
       </div>
         <div className='flex justify-center py-3 '>
         <Link to="/services">
-          <button className="btn glass w-40 text-white  text-2xl">See All</button></Link>
+          <button className="btn glass w-40 btn-outline border-green-300 border-2 shadow-md  text-2xl">See All</button></Link>
 
         </div>
     </div>
