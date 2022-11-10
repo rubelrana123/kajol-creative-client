@@ -12,6 +12,8 @@ const Header = () => {
   const handleSignout  = () => {
     signout().then(()=> {
       toast.success("Signout Seccessfully", {autoClose : 200})
+				localStorage.removeItem("token-jwt")
+
     }).catch(err => console.log(err))
   }
   return (
@@ -25,25 +27,24 @@ const Header = () => {
       <ul tabIndex={0} className="menu menu-compact dropdown-content bg-gray-400 mt-3 pt-2 shadow  rounded-box w-96 ">
         <li><Link to="/">Home</Link></li>
 
-
-
-        <li tabIndex={0}>
-          <Link to="/addService">
-            Add Service
-      
-          </Link>
-       
-        </li>
-        <li tabIndex={0}>
-          <Link to="/myReview">
-            My  Review
-      
-          </Link>
-       
-        </li>
         <li><Link to="blog">BLog</Link></li>
-        <li><Link to="/login">LogIn</Link></li>
-        <li className='ml-2' onClick={handleSignout}> Logout</li>
+
+              {
+        user?.uid && user?.email  ?
+         <>
+       <li tabIndex={0}> <Link to="/myReview"> My Review  </Link> </li>
+       <li><Link to="/addService">Add Service</Link></li>
+      <li className='mt-3 cursor-pointer' onClick={handleSignout}>Logout</li>
+
+         </>
+        :
+        <>
+                <li><Link to="/login">LogIn</Link></li>
+        
+
+        
+        </>
+      }
       </ul>
     </div>
     <Link  to="/" className="btn btn-ghost normal-case text-xl">

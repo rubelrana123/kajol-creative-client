@@ -32,6 +32,22 @@ const handleForm = (e) => {
 
  signin(email, password).then((userCredential) => {
     const user = userCredential.user;
+
+    const currentUser = {email : user.email}
+    console.log(currentUser);
+    fetch(`http://localhost:5000/jwt`,{
+    headers: {
+      
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify(currentUser)
+}).then(res => res.json()).then(data => {
+    localStorage.setItem("token-jwt", data.token)
+    console.log(data);
+});
+
+
     console.log(user);
 		navigate(from, {replace : true})
     navigate("/")

@@ -6,14 +6,29 @@ import UseTitle from '../../../Title/UseTitle';
 import MyReviewCard from './MyReviewCard';
 
 const MyReview = () => {
-	const {user} = useContext(AuthContext);
+	const {user , logOut} = useContext(AuthContext);
 	const navigate = useNavigate();
   UseTitle("Review");
   const [reviews, setReviews] = useState([]);
 
 	useEffect(()=> {
-		fetch(`http://localhost:5000/reviews?email=${user?.email}`).then(res => res.json()).then(data => setReviews(data))
-	}, [user.email])
+		fetch(`http://localhost:5000/reviews?email=${user?.email}`,
+		 {
+    headers : {
+        authorization : `Bearer ${localStorage.getItem("token-jwt")}`
+    }
+   }).then(res => {
+    if(res.status === 403 || res.status=== 401){
+        return logOut();
+    }
+    return res.json();
+   }).then(data => {
+    console.log(data);
+    return setReviews(data);
+   })
+
+ }, [user?.email])
+ 
 
 	     const handleDelete = (id,serviceId, title) => {
 				console.log("Delete", id,serviceId,  title);
