@@ -16,7 +16,7 @@ const ServiceDetails = () => {
 
 console.log(reviews);
 
-    fetch(`http://localhost:5000/reviews/${_id}`).then(res => res.json()).then(data => console.log(data));
+    fetch(`http://localhost:5000/reviews/${_id}`).then(res => res.json()).then(data => setReviews(data));
 
 
 
@@ -38,7 +38,8 @@ console.log(reviews);
        name :  user?.displayName,
        userPhoto : user?.photoURL || <FaUser></FaUser>,
        date : currentDate,
-       email : user?.email
+       email : user?.email,
+       serviceTitle : title,
 
     }
     // console.log(reviewObj);
@@ -66,6 +67,22 @@ console.log(reviews);
   });
 
    }
+
+     // const handleDelete = (id) => {
+  //   fetch(`http://localhost:5000/product/${id}`, {
+  //     method: "DELETE",
+  //   })
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     if(data.success){
+  //       toast.success(data.message);
+  //       setRefresh(!refresh);
+  //     } else {
+  //       toast.error(data.error);
+  //     }
+  //   }).catch(err => toast.error(err.message))
+  // };
+
 
   return (
    <div className='pt-36 '>
@@ -148,13 +165,17 @@ console.log(reviews);
         </div>
         </form>
      </div>
-     <div className='w-2/4 pt-4'>
-            <div className=''>
-        <p className='text-xl'>Service Review : </p>
+     <div className='w-2/4 my-4 '>
+            <div className=' p-4'>
+        <p className='text-2xl '>Service Review : </p>
       </div>
-        {
-          // reviews?.map(review => <PublicReview key={review._id} reviewss={review} ></PublicReview> )
+     {   reviews.length < 1 ? <p className='text-xl text-center'>Empty Review</p>
+            :
+          reviews.map(review => <PublicReview key={review._id} reviewss={review} ></PublicReview> )
+       
+
         }
+  
      </div>
 
   </div>
