@@ -18,7 +18,7 @@ const AllServiceItem = ({service}) => {
             <p>{ description.length > 100 && description.slice(1,120) + "....."  }</p>
             <div className="card-actions justify-between">
               <p className='text-2xl'>Package :{price} BDT</p>
-              <Link to={`/serviceDetails/${_id}`}>
+              <Link to={`/service/${_id}`}>
                  <button className="btn btn-outline btn-primary rounded-md">Details</button>
               </Link>
             </div>

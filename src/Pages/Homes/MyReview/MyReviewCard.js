@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
-const MyReviewCard = ({myReview, user, handleDelete}) => {
+const MyReviewCard = ({myReview, user, handleDelete, handleEdit}) => {
   const {image,date, name,rating, _id,serviceTitle, review, serviceId
 } = myReview;
  
@@ -9,10 +9,10 @@ const MyReviewCard = ({myReview, user, handleDelete}) => {
  
 
   return (
-    <div>
-        <div className="container flex mb-4 flex-col w-full max-w-lg p-2 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
-	<div className="flex justify-between p-4">
-		<div className="flex space-x-4">
+    <div className='pb-3'>
+        <div className="container flex pb-4 flex-col w-full max-w-lg p-2 mb-2 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
+	<div className="flex justify-between p-4 ">
+		<div className="flex space-x-4 ">
 			<div>
 				<img src={image} alt="" className="object-cover w-12 h-12 rounded-md dark:bg-gray-500" />
 			</div>
@@ -28,8 +28,8 @@ const MyReviewCard = ({myReview, user, handleDelete}) => {
 			<span className="text-xl font-bold">{rating}</span>
 		</div>
       <div className='flex gap-4'>
-        <FaTrashAlt onClick={() => handleDelete(_id, serviceTitle)} className='cursor-pointer'></FaTrashAlt>
-        <FaEdit className='cursor-pointer'></FaEdit>
+        <FaTrashAlt onClick={() => handleDelete(_id,serviceId, serviceTitle)} className='cursor-pointer'></FaTrashAlt>
+        <FaEdit className='cursor-pointer' onClick={() => handleEdit(_id)}></FaEdit>
       </div>
 	</div>
 	<div className="p-2 space-y-2 text-sm dark:text-gray-400">

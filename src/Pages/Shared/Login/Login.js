@@ -11,9 +11,10 @@ const Login = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const from = location?.state?.from.pathname || "/"
-  const {user, signin, googleSignin,} = useContext(AuthContext);
+  const {user, signin, googleSignin,loading, setLoading} = useContext(AuthContext);
   // console.log(user);
-
+  
+ 
 const handleForm = (e) => {
 
  e.preventDefault();
@@ -45,7 +46,8 @@ const handleForm = (e) => {
 		
 
 
-  });
+   
+  }).finally ( () => setLoading(false) )
 
 }
 		if(error.includes('wrong-password')){
@@ -55,7 +57,8 @@ const handleForm = (e) => {
 	const handleGoogleSignIn = () =>{
 		googleSignin()
 			.then((result) => {
-	
+		navigate(from, {replace : true})
+	        
 				const user = result.user;
 				console.log(user);
 				// ...
@@ -71,8 +74,11 @@ const handleForm = (e) => {
 	}
   return (
     <div>
+      {
+        loading &&  <div className="w-16 h-16 my-[25%] mx-auto border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div>
+      }
       <div className="hero min-h-screen 
-       bg-base-200">
+       bg-base-200 mt-20">
   <div className="hero-content flex-col lg:flex-row-reverse mx-20">
     <div className="text-center lg:text-left">
        <img src={svg1} className= "w-[80%]" alt="" />

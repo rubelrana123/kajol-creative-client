@@ -33,14 +33,14 @@ const Gallary = () => {
 			<h2 className="text-4xl font-bold text-white lg:text-5xl">Gallary</h2>
 			 
 		</div>
-       <div class="container grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-2 mx-auto">
+       <div className="container grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-2 mx-auto">
 
         {
           GallaryPhoto.map(photo => {
             return (
-                        <div class="w-full rounded">
+                        <div className="w-full rounded">
         <img src= {photo.image}
-           class="inset-0 h-full w-full object-cover object-center rounded opacity-75 hover:opacity-100" 
+           className="inset-0 h-full w-full object-cover object-center rounded opacity-75 hover:opacity-100" 
             alt="gallary"/>
          </div>
 
