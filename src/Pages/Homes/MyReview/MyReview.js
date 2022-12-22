@@ -12,7 +12,7 @@ const MyReview = () => {
   const [reviews, setReviews] = useState([]);
 
 	useEffect(()=> {
-		fetch(`http://localhost:5000/reviews?email=${user?.email}`,
+		fetch(`https://kajolcreative.vercel.app/reviews?email=${user?.email}`,
 		 {
     headers : {
         authorization : `Bearer ${localStorage.getItem("token-jwt")}`
@@ -35,7 +35,7 @@ const MyReview = () => {
 				const process = window.confirm(`Are you sure delete your ${title} review`);
 				if(process) {
 
-	   fetch(`http://localhost:5000/reviews/${id}`, {
+	   fetch(`https://kajolcreative.vercel.app/reviews/${id}`, {
       method: "DELETE",
     })
     .then(res => res.json())

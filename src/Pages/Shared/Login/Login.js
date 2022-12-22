@@ -6,10 +6,10 @@ import { AuthContext } from '../../../Contexts/UserContext/UserContext';
 import UseTitle from '../../../Title/UseTitle';
 const Login = () => {
     const [error, setError] = useState("");
+    const location = useLocation();
+    const navigate = useNavigate();
 	// const [userEmail, setUserEmail] = useState('');
   UseTitle("Login")
-	const location = useLocation();
-	const navigate = useNavigate();
 	const from = location?.state?.from.pathname || "/"
   const {user, signin, googleSignin,loading, setLoading} = useContext(AuthContext);
   // console.log(user);
@@ -35,7 +35,7 @@ const handleForm = (e) => {
 
     const currentUser = {email : user.email}
     console.log(currentUser);
-    fetch(`http://localhost:5000/jwt`,{
+    fetch(`https://kajolcreative.vercel.app/jwt`,{
     headers: {
       
       'Content-Type': 'application/json'
@@ -91,10 +91,10 @@ const handleForm = (e) => {
   return (
     <div>
       {
-        loading &&  <div className="w-16 h-16 my-[25%] mx-auto border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div>
-      }
+        loading ?  <div className="w-16 h-16 my-[25%]  mx-auto border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div>
+     : 
       <div className="hero min-h-screen 
-       bg-base-200 mt-20">
+       bg-base-200 pt-20">
   <div className="hero-content flex-col lg:flex-row-reverse mx-20">
     <div className="text-center lg:text-left">
        <img src={svg1} className= "w-[80%]" alt="" />
@@ -145,6 +145,7 @@ const handleForm = (e) => {
     </div>
   </div>
 </div>
+}
     </div>
   );
 };

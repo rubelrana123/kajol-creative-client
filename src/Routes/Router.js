@@ -8,6 +8,7 @@ import MyReview from "../Pages/Homes/MyReview/MyReview";
 import AddService from "../Pages/Service/AddService";
 import AllService from "../Pages/Service/AllService";
 import ServiceDetails from "../Pages/Service/ServiceDetails";
+import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
 import Login from "../Pages/Shared/Login/Login";
 import SignUp from "../Pages/Shared/Signup/Signup";
 import PrivateRoute from "./PrivateRoute";
@@ -19,7 +20,7 @@ import PrivateRoute from "./PrivateRoute";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element :<Main></Main>, children :[
+    element :<Main></Main>, errorElement : <ErrorPage/> , children :[
       {path : "/", element : <Home></Home>},
       {path : "/login", element : <Login></Login>},
       {path : "/signup", element : <SignUp></SignUp>},
@@ -27,8 +28,8 @@ export const router = createBrowserRouter([
       {path : "/myReviews/:id", element : <EditReview></EditReview>},
       {path : "/addService", element : <PrivateRoute><AddService></AddService></PrivateRoute>},
       {path : "/myReview", element : <PrivateRoute><MyReview></MyReview></PrivateRoute>},
-      {path : "/service/:id", element : <ServiceDetails></ServiceDetails>, loader : ({params}) => fetch(`http://localhost:5000/services/${params.id}`)},
-      {path : "/services", element : <AllService></AllService>, loader : () => fetch(`http://localhost:5000/services`)},
+      {path : "/service/:id", element : <ServiceDetails></ServiceDetails>, loader : ({params}) => fetch(`https://kajolcreative.vercel.app/services/${params.id}`)},
+      {path : "/services", element : <AllService></AllService>, loader : () => fetch(`https://kajolcreative.vercel.app/services`)},
       
     ]
   },

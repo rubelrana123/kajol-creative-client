@@ -7,7 +7,7 @@ const Service = () => {
   
   const [services, setServices] = useState([]);
     useEffect(()=> {
-    const uri = `http://localhost:5000/services?size=3`;
+    const uri = `https://kajolcreative.vercel.app/services?size=3`;
     fetch(uri).then(res => res.json()).then(data => {
          
         setServices(data.service);

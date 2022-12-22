@@ -24,6 +24,24 @@ const handleForm = (e) => {
  createUser(email, password).then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
+  
+
+    const currentUser = {email : user.email}
+    console.log(currentUser);
+    fetch(`https://kajolcreative.vercel.app/jwt`,{
+    headers: {
+      
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify(currentUser)
+}).then(res => res.json()).then(data => {
+    localStorage.setItem("token-jwt", data.token)
+    console.log(data);
+});
+
+
+
     console.log(user);
     toast.success('Register SuccessFully',{autoClose : 200});
      		navigate(from, {replace : true})

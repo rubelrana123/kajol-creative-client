@@ -17,7 +17,7 @@ const ServiceDetails = () => {
 
 console.log(reviews);
 
-    fetch(`http://localhost:5000/reviews/${_id}`).then(res => res.json()).then(data => setReviews(data));
+    fetch(`https://kajolcreative.vercel.app/reviews/${_id}`).then(res => res.json()).then(data => setReviews(data));
 
 
 
@@ -46,7 +46,7 @@ console.log(reviews);
     // console.log(reviewObj);
 
 
-      fetch(`http://localhost:5000/reviews`, {
+      fetch(`https://kajolcreative.vercel.app/reviews`, {
      method: 'POST',  
     headers: {
     'Content-Type': 'application/json',
@@ -93,8 +93,8 @@ console.log(reviews);
 </div>
      </div>
 
-  <div className='flex justify-evenly'>
-       <div className='w-1/3 mt-12'>
+  <div className='flex justify-evenly lg:flex-row flex-col'>
+       <div className='w-1/3 mt-12 mx-auto'>
           { user?.uid ?
           <>
            <form onSubmit={handleForm} className= " border-2 border-emerald-500 p-3 rounded-xl mt-6 px-18" >
@@ -123,7 +123,7 @@ console.log(reviews);
           </>
           :
           <>
-            <div className='text-center border-2  py-10 text-white text-2xl'>
+            <div className='text-center border-2   py-10 text-white text-2xl'>
             <p>Please Log in to Add a Review</p>
             <button onClick={handleLoginButton} className='btn btn-outline border-2 mt-2 w-24 border-red-500 rounded-md text-white'>Login</button>
           </div>  
@@ -137,7 +137,7 @@ console.log(reviews);
 
       
      </div>
-     <div className='w-2/4 my-4 '>
+     <div className='w-2/4 my-4 mx-auto '>
             <div className=' p-4'>
         <p className='text-2xl text-gray-100'>Service Review : </p>
       </div>
@@ -162,6 +162,6 @@ console.log(reviews);
 export default ServiceDetails;
 
 
-/* 
+ 
     
-*/
+ 

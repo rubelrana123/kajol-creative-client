@@ -6,7 +6,7 @@ const AddService = () => {
   const [services, setServices] = useState();
 
   useEffect(()=> {
-    fetch(`http://localhost:5000/services`).then(res => res.json()).then(data => setServices(data));
+    fetch(`https://kajolcreative.vercel.app/services`).then(res => res.json()).then(data => setServices(data));
 
    })
 console.log("service", services);
@@ -29,7 +29,7 @@ console.log("service", services);
       price,
     }
     console.log(service);
-    fetch(`http://localhost:5000/services`, {
+    fetch(`https://kajolcreative.vercel.app/services`, {
      method: 'POST',  
     headers: {
     'Content-Type': 'application/json',

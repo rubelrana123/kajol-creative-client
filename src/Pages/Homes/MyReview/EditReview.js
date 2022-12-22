@@ -6,9 +6,10 @@ const EditReview = () => {
   const {id} = useParams();
  const navigate = useNavigate();
   const [reviews, setReviews] = useState({});
+  // console.log(reviews);
   const currentDate =  new Date().toLocaleString();
   useEffect(() => {
-    fetch(`http://localhost:5000/reviewsEdit/${id}`).then(res => res.json()).then(data => setReviews(data))
+    fetch(`https://kajolcreative.vercel.app/reviewsEdit/${id}`).then(res => res.json()).then(data => setReviews(data))
   }, [id])
  
    const handleForm = (e) => {
@@ -22,7 +23,7 @@ const EditReview = () => {
       rating,
      date : currentDate,
    }
-    fetch(`http://localhost:5000/reviews/${id}`, {
+    fetch(`https://kajolcreative.vercel.app/reviews/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json"
@@ -30,12 +31,13 @@ const EditReview = () => {
       body: JSON.stringify(reviewObj)
     }).then(res => res.json())
     .then(data => {
+      
+  
         if(data.acknowledged) {
         
-            
-              toast.success("Review Edit Succeddfully " , {autoClose : 200})
+             form.reset();
+         toast.success("Review Edit Succeddfully " , {autoClose : 200})
                navigate("/myReview")
-               form.reset();
    
             }
        
@@ -46,7 +48,10 @@ const EditReview = () => {
   }
   return (
     <div className='w-2/4 mx-auto mt-40'>
-           <form onSubmit={handleForm} className= " border-2 border-emerald-500 p-3 rounded-xl mt-6 px-18" >
+         <div className='text-4xl'>
+          Edit Your Review
+         </div>
+           <form onSubmit={handleForm} className= " border-2 border-emerald-500 p-3 rounded-xl   px-18" >
         <div>
           <h1 className='text-md text-gray-100 '>Rate and review purchased Service</h1>
         </div>
